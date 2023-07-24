@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <!-- Load required Meta tags, Bootstrap, CSS -->
+    <div id="general-feature"></div>
+    <script>
+      fetch("/components/general.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("general-feature").innerHTML = data;
+        });
+    </script>
+    <!-- End of General -->
+
+    <!-- Load Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+
+    <!-- Load common navbar element -->
+    <div id="navbar-feature"></div>
+    <script>
+      fetch("/components/navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-feature").innerHTML = data;
+        });
+    </script>
+    <!-- End of navbar -->
+  </head>
+
+  <body>
+    <section id="title">
+      <!-- Title -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg">
+            <h1 style="padding-top: 15%" ;>Σύγκρινε τιμές γρήγορα και απλά.</h1>
+            <button
+              type="button"
+              class="btn btn-outline-light btn-lg download-button"
+            >
+              <i class="bi bi-google-play"></i> Download
+            </button>
+            <button type="button" class="btn btn-dark btn-lg download-button">
+              <i class="bi bi-apple"></i> Download
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Load common footer element -->
+    <div id="footer-feature"></div>
+    <script>
+      fetch("/components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer-feature").innerHTML = data;
+        });
+    </script>
+    <!-- End of footer -->
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>User Registration</title>
+
+    <!-- Load required Meta tags, Bootstrap, CSS -->
+    <div id="general-feature"></div>
+    <script>
+      fetch("/components/general.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("general-feature").innerHTML = data;
+        });
+    </script>
+    <!-- End of General -->
+
+    <!-- Load common navbar element -->
+    <div id="navbar-feature"></div>
+    <script>
+      fetch("/components/navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-feature").innerHTML = data;
+        });
+    </script>
+    <!-- End of navbar -->
+
+    />
+  </head>
+  <body>
+    <br />
+    <br />
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 mx-auto">
+          <h2 class="text-center">Sign In</h2>
+          <p class="text-center">
+            To sign in your username and password are required.
+          </p>
+          <form action="sign_in.php" method="post" novalidate>
+            <br />
+            <div class="form-group form-group-expand-lg">
+              <label for="username"><b>Username :</b></label>
+              <input
+                class="form-control"
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter your username"
+                required
+              />
+            </div>
+            <br />
+            <div class="form-group form-group-expand-lg">
+              <label for="exampleInputPassword1"><b>Password :</b></label>
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div class="form-check form-group-expand-lg">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+              />
+              <label class="form-check-label" for="exampleCheck1"
+                ><small>Remember me?</small></label
+              >
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary btn bg-dark">
+              Sign In
+            </button>
+            <br />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load common footer element -->
+    <div id="footer-feature"></div>
+    <script>
+      fetch("/components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer-feature").innerHTML = data;
+        });
+    </script>
+    <!-- End of footer -->
+  </body>
+</html>
