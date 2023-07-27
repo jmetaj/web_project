@@ -1,3 +1,13 @@
+<?php
+// Set the include path to include the parent directory
+// Adjust this path based on the actual location of the parent directory
+ini_set('include_path', ini_get('include_path') . ';C:\wamp64\www\web_project');
+
+// Now you can use require_once with a relative path from the parent directory
+require_once('../includes/proccess.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,7 +16,7 @@
     <!-- Load required Meta tags, Bootstrap, CSS -->
     <div id="general-feature"></div>
     <script>
-      fetch("/components/general.html")
+      fetch("../components/general.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("general-feature").innerHTML = data;
@@ -17,7 +27,7 @@
     <!-- Load common navbar element -->
     <div id="navbar-feature"></div>
     <script>
-      fetch("/components/navbar.html")
+      fetch("../components/navbar.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("navbar-feature").innerHTML = data;
@@ -38,7 +48,7 @@
           </p>
 
           <!-- Form -->
-          <form action="sign_up.php" method="post" novalidate>
+          <form action="../includes/proccess.php" method="post">
             <br />
             <div class="form-group">
               <label for="username"><b>Username :</b></label>
@@ -97,7 +107,7 @@
     <!-- Load common footer element -->
     <div id="footer-feature"></div>
     <script>
-      fetch("/components/footer.html")
+      fetch("../components/footer.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("footer-feature").innerHTML = data;
