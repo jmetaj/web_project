@@ -34,7 +34,10 @@ require_once('../includes/proccess.php');
         });
     </script>
     <!-- End of navbar -->
-    <!-- Required meta tags -->
+
+    <!-- Load sign up javascript -->
+    <script defer src="\js\sign_up.js"></script>
+
   </head>
   <body>
     <br />
@@ -60,6 +63,8 @@ require_once('../includes/proccess.php');
                 placeholder="Enter your username"
                 required
               />
+              <div class="invalid-feedback">Invalid username</div>
+              <div class="valid-feedback">Invalid username</div>
             </div>
             <div class="form-group">
               <label for="email"><b>Email :</b></label>
@@ -71,6 +76,8 @@ require_once('../includes/proccess.php');
                 placeholder="Enter your email"
                 required
               />
+              <div class="invalid-feedback">Invalid email</div>
+              <div class="valid-feedback">Invalid email</div>
             </div>
             <div class="form-group">
               <label for="password"><b>Password :</b></label>
@@ -97,7 +104,8 @@ require_once('../includes/proccess.php');
             </button>
             <small id="emailHelp" class="form-text text-muted"
               ><b>DISCLAIMER:</b> We'll never share your personal info with
-              anyone else.</small>
+              anyone else.</small
+            >
           </form>
           <!-- End of form -->
         </div>
