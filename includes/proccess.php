@@ -25,6 +25,6 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
 
     // Close the statement
    // $stmtinsert->close();
-   //mysqli_close($conn);
+   mysqli_close($conn);
 }
 ?>

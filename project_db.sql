@@ -20,20 +20,26 @@ CREATE TABLE store (
 
 
 CREATE TABLE category (
-  category_id INT UNSIGNED AUTO_INCREMENT,
+  category_id VARCHAR(50),
   category_name VARCHAR(100) NOT NULL,
-  parent_id INT UNSIGNED,
-  PRIMARY KEY (category_id),
-  FOREIGN KEY (parent_id) REFERENCES category(category_id)
+  PRIMARY KEY (category_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE subcategories (
+  subcategory_id VARCHAR(50) PRIMARY KEY,
+  subcategory_name VARCHAR(100) NOT NULL,
+  category_id VARCHAR(50),
+  FOREIGN KEY (category_id) REFERENCES category (category_id) ON DELETE RESTRICT  ON UPDATE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;;
+
 
 
 CREATE TABLE product (
-  product_id INT UNSIGNED,
+  product_id INT UNSIGNED AUTO_INCREMENT,
   product_name VARCHAR(100) NOT NULL,
-  category_id INT UNSIGNED NOT NULL,
+  subcategory_id VARCHAR(50), 
   PRIMARY KEY (product_id),
-  CONSTRAINT `fk_category_product` FOREIGN KEY (category_id) REFERENCES category (category_id) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_category_product` FOREIGN KEY (subcategory_id) REFERENCES subcategories (subcategory_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -101,4 +107,3 @@ CREATE TABLE Images (
   image_url VARCHAR(255) NOT NULL,
   FOREIGN KEY (offer_id) REFERENCES Offer(offer_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-

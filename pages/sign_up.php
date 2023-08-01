@@ -1,13 +1,3 @@
-<?php
-// Set the include path to include the parent directory
-// Adjust this path based on the actual location of the parent directory
-ini_set('include_path', ini_get('include_path') . ';C:\wamp64\www\web_project');
-
-// Now you can use require_once with a relative path from the parent directory
-require_once('../includes/proccess.php');
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +26,7 @@ require_once('../includes/proccess.php');
     <!-- End of navbar -->
 
     <!-- Load sign up javascript -->
-    <script defer src="\js\sign_up.js"></script>
+   
 
   </head>
   <body>
@@ -124,3 +114,4 @@ require_once('../includes/proccess.php');
     <!-- End of footer -->
   </body>
 </html>
+      
