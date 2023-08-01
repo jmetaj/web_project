@@ -53,21 +53,19 @@
                 placeholder="Enter your username"
                 required
               />
-              <div class="invalid-feedback">Invalid username</div>
-              <div class="valid-feedback">Invalid username</div>
+              <div class="error"></div>
             </div>
             <div class="form-group">
               <label for="email"><b>Email :</b></label>
               <input
-                type="email"
+                type="text"
                 class="form-control"
                 id="email"
                 aria-describedby="emailHelp"
                 placeholder="Enter your email"
                 required
               />
-              <div class="invalid-feedback">Invalid email</div>
-              <div class="valid-feedback">Invalid email</div>
+              <div class="error"></div>
             </div>
             <div class="form-group">
               <label for="password"><b>Password :</b></label>
@@ -88,6 +86,7 @@
                 placeholder="Re-enter your password"
                 required
               />
+              <div class="error"></div>
             </div>
             <button type="submit" class="btn btn-primary btn bg-dark">
               Submit
@@ -111,7 +110,7 @@
           document.getElementById("footer-feature").innerHTML = data;
         });
     </script>
+
     <!-- End of footer -->
   </body>
 </html>
-      

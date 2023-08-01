@@ -61,8 +61,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     errorDisplay.innerText = message;
     inputControl.classList.add("error");
+    errorDisplay.innerText = message;
+    inputControl.classList.add("error");
   }
 
+  function isValidEmail(email) {
+    //Regular expression για έλεγχο της μορφής του email
+    const email_regex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return email_regex.test(String(email).toLowerCase());
+  }
   function isValidEmail(email) {
     //Regular expression για έλεγχο της μορφής του email
     const email_regex =
@@ -78,7 +86,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const password_regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]+$/;
     return password_regex.test(password);
   }
+  function isValidPassword(password) {
+    if (password.length < 8) {
+      return false;
+    }
+     //Regular expression για έλεγχο της μορφής του password
+    const password_regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]+$/;
+    return password_regex.test(password);
+  }
 
+  function hasErrors() {
+    let hasError = false;
+    errorElements.forEach((errorElement) => {
+      if (errorElement.innerText !== "") {
+        hasError = true;
+      }
+    });
+    return hasError;
+  }
   function hasErrors() {
     let hasError = false;
     errorElements.forEach((errorElement) => {
