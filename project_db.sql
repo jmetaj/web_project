@@ -19,7 +19,7 @@ CREATE TABLE store (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE category (
+CREATE TABLE categories (
   category_id VARCHAR(50),
   category_name VARCHAR(100) NOT NULL,
   PRIMARY KEY (category_id)
@@ -29,17 +29,17 @@ CREATE TABLE subcategories (
   subcategory_id VARCHAR(50) PRIMARY KEY,
   subcategory_name VARCHAR(100) NOT NULL,
   category_id VARCHAR(50),
-  FOREIGN KEY (category_id) REFERENCES category (category_id) ON DELETE RESTRICT  ON UPDATE CASCADE
+  FOREIGN KEY (category_id) REFERENCES categories (category_id) ON DELETE RESTRICT  ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;;
 
 
 
-CREATE TABLE product (
+CREATE TABLE products (
   product_id INT UNSIGNED AUTO_INCREMENT,
   product_name VARCHAR(100) NOT NULL,
   subcategory_id VARCHAR(50), 
   PRIMARY KEY (product_id),
-  CONSTRAINT `fk_category_product` FOREIGN KEY (subcategory_id) REFERENCES subcategories (subcategory_id) ON DELETE RESTRICT ON UPDATE CASCADE
+  CONSTRAINT `fk_category_product` FOREIGN KEY (subcategory_id) REFERENCES subcategories(subcategory_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -57,7 +57,7 @@ CREATE TABLE offer (
   active BOOLEAN,
   PRIMARY KEY (offer_id),
   CONSTRAINT `fk_store_offer` FOREIGN KEY (store_id) REFERENCES store (store_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fk_product_offer` FOREIGN KEY (product_id) REFERENCES product (product_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_product_offer` FOREIGN KEY (product_id) REFERENCES products (product_id) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_user_offer` FOREIGN KEY (users_id) REFERENCES users (users_id) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -97,7 +97,7 @@ CREATE TABLE prices(
     price_date DATE,
     price DECIMAL(5, 2) NOT NULL,
     PRIMARY KEY (product_id, price_date),
-    CONSTRAINT `fk_product_prices` FOREIGN KEY (product_id) REFERENCES product (product_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT `fk_product_prices` FOREIGN KEY (product_id) REFERENCES products (product_id) ON DELETE RESTRICT ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
