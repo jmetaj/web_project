@@ -1,4 +1,5 @@
 <?php
+
 require_once('connection.php');
 
 // Use __DIR__ to get the absolute path to the 'includes' directory
@@ -20,7 +21,7 @@ $products = $data['data'];
 $insertProductSql = "INSERT IGNORE INTO products (product_id, product_name, subcategory_id) VALUES (?, ?, ?)";
 $stmtProduct = $conn->prepare($insertProductSql);
 
-$insertPriceSql = "INSERT INTO prices (product_id, price_date, price) VALUES (?, ?, ?)";
+$insertPriceSql = "INSERT IGNORE INTO prices (product_id, price_date, price) VALUES (?, ?, ?)";
 $stmtPrice = $conn->prepare($insertPriceSql);
 
 // Bind the values to the placeholders in the prepared statements for products and prices
@@ -83,4 +84,5 @@ $stmtPrice->close();
 
 // Close the database connection (you can also close it in connection.php after you finish using it)
 $conn->close();
+
 ?>
