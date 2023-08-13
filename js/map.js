@@ -1,36 +1,50 @@
-// map.js
+// Initialize map centered on user's location
+var map = L.map('map'); // No need to set the initial view here
 
-// Initialize the map
-const map = L.map('map').setView([0, 0], 16); // Centered on user's location
-
-// Add the OpenStreetMap tile layer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Function to handle user location retrieval
-function onLocationFound(e) {
-  var radius = e.accuracy / 2;
-
-  // Create a marker for the user's location
-  L.marker(e.latlng).addTo(map)
-    .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-  // Create a circle to represent the accuracy of the location
-  L.circle(e.latlng, radius).addTo(map);
-}
-map.on("locationfound", onLocationFound);
-
-// Function to handle errors when retrieving user location
-function onLocationError(e) {
-  alert(e.message);
+// Function to add markers and popups
+function addMarkersAndPopups(data) {
+    data.forEach(function(store) {
+        var marker = L.marker([store.lat, store.lon]).addTo(map);
+        console.log("Adding marker at", store.lat, store.lon); // Debug: Check marker coordinates
+        marker.bindPopup('<div><h2>' + store.name + '</h2><p>' + store.offer + '</p></div>');
+    });
 }
 
-// Check if the browser supports geolocation
+// Fetch active offers using AJAX
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "../includes/get_active_offers.php", true);
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        try {
+            var activeOffers = JSON.parse(xhr.responseText);
+            console.log(activeOffers); // Debug: Check if offers data is correctly fetched
+            addMarkersAndPopups(activeOffers);
+        } catch (error) {
+            console.error("Error parsing JSON:", error);
+        }   
+    }
+};
+xhr.send();
+
+// Get user's location using geolocation service
 if ("geolocation" in navigator) {
-  // Request the user's location
-  navigator.geolocation.getCurrentPosition(onLocationFound, onLocationError);
-  map.locate({ setView: true, maxZoom: 16, timeout: 10000 }); // Timeout για καλύτερη ακρίβεια
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var userLatitude = position.coords.latitude;
+        var userLongitude = position.coords.longitude;
+
+        // Set map view to user's location
+        map.setView([userLatitude, userLongitude], 12); // You can adjust the zoom level (12 in this case)
+        
+        // Add a marker for the user's location
+        var userMarker = L.marker([userLatitude, userLongitude], { icon: L.icon({ iconUrl: 'user-icon.png', iconSize: [32, 32] }) }).addTo(map);
+        userMarker.bindPopup("Your Location").openPopup();
+    }, function(error) {
+        console.error("Error getting user's location:", error);
+    });
 } else {
-  alert("Geolocation is not available in this browser.");
+    console.log("Geolocation is not available.");
 }
