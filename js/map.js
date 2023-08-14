@@ -8,7 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Function to add markers and popups
 function addMarkersAndPopups(data) {
     data.forEach(function(store) {
-        var marker = L.marker([store.lat, store.lon]).addTo(map);
+        var marker = L.marker([store.lat, store.lon], { storeName: store.name }).addTo(map);
         console.log("Adding marker at", store.lat, store.lon); // Debug: Check marker coordinates
         marker.bindPopup('<div><h2>' + store.name + '</h2><p>' + store.offer + '</p></div>');
     });
