@@ -1,8 +1,11 @@
 <?php
 require_once('connection.php');
+// Get the search keyword from the query string (if provided)
+$searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Query to retrieve stores with active offers
-$sql = "SELECT store_name, latitude, longitude FROM store INNER JOIN offer ON store.store_id = offer.store_id WHERE offer.active = 1";
+// Modify the SQL query to include the search keyword
+$sql = "SELECT store_name, latitude, longitude FROM store 
+INNER JOIN offer ON store.store_id = offer.store_id WHERE offer.active = 1 AND store_name LIKE '%$searchKeyword%'";
 $result = $conn->query($sql);
 
 $storesWithOffers = [];

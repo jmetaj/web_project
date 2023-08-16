@@ -12,12 +12,22 @@
 <body>
 
     <div id="map" style="height: 400px;"></div>
-    <input type="text" id="storeSearch" placeholder="Search by store name">
-    <button id="clearFilter">Clear Filter</button>
+    <form id="search-form">
+        <input type="text" id="search-input" placeholder="Search for store name...">
+        <button type="submit">Search</button>
+    </form>
+    
+    <form id="category-form">
+        <!-- Add your category dropdown/select element here -->
+        <select id="category-select">
+            <!-- Add options here -->
+        </select>
+        <button type="submit">Filter by Category</button>
+    </form>
+    
+    <!--<button id="clearFilter">Clear Filter</button>-->
     <script src="../js/filter.js"></script>
     <script src="../js/map.js"></script>
 
-    
-    
 </body>
 </html>

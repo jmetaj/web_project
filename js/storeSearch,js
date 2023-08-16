@@ -1,0 +1,20 @@
+// storeSearch.js
+
+// Assuming you have a variable 'stores' containing store data
+// This could be fetched from a JSON file or an API
+// var stores = [...]; 
+
+const storeSearchInput = document.getElementById("store-search");
+
+storeSearchInput.addEventListener("input", function() {
+    const searchQuery = storeSearchInput.value.toLowerCase();
+
+    // Clear previous markers
+    clearMarkers();
+
+    // Filter stores based on search query
+    const filteredStores = stores.filter(store => store.name.toLowerCase().includes(searchQuery));
+
+    // Display filtered stores on the map
+    addMarkersAndPopups(filteredStores);
+});
